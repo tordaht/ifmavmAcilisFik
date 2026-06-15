@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>İFM AVM — Grand Opening</title>
-  <meta name="description" content="İstanbul Finans Merkezi AVM açılışı için premium aktivite kataloğu">
+  <title>İFM AVM — Grand Opening Aktivite Kataloğu</title>
+  <meta name="description" content="İFM AVM açılışı için premium aktivite, show ve deneyim kataloğu">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -35,13 +35,13 @@
         </svg>
         <span class="header__logo-copy">
           <strong>İFM AVM</strong>
-          <span>Premium aktivite kataloğu</span>
+          <span>Grand opening aktivite kataloğu</span>
         </span>
       </a>
 
       <nav class="header__nav" data-nav aria-label="Ana menü">
         <a href="#catalog">Aktiviteler</a>
-        <a href="#details">Detay Akışı</a>
+        <a href="#details">Detay Dosyası</a>
       </nav>
 
       <div class="header__actions">
@@ -55,12 +55,12 @@
     </div>
     <div class="header__mobile-menu" data-mobile-menu>
       <a href="#catalog">Aktiviteler</a>
-      <a href="#details">Detay Akışı</a>
+      <a href="#details">Detay Dosyası</a>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero" id="hero" aria-label="Grand Opening">
+    <section class="hero" id="hero" aria-label="İFM AVM Grand Opening">
       <canvas class="hero__canvas" data-canvas aria-hidden="true"></canvas>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
@@ -68,15 +68,15 @@
           <span class="hero__eyebrow-dot"></span>
           İstanbul Finans Merkezi AVM
         </p>
-        <h1 class="hero__title">Grand<br>Opening</h1>
-        <p class="hero__sub">Müşteriye satılabilir, video referanslı ve IFM içinde gerçek show olarak kurgulanmış premium açılış aktiviteleri.</p>
+        <h1 class="hero__title">Açılış<br>Aktivite Kataloğu</h1>
+        <p class="hero__sub">Bu çalışma, İFM AVM açılışı için seçilebilecek premium aktivite ve show önerilerini; yaratıcı gerekçesi, teknik kurgusu, saha ihtiyacı ve dünya benchmark referanslarıyla birlikte sunmak için hazırlandı.</p>
         <div class="hero__cta">
           <button class="btn btn--green btn--lg" type="button" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
-            Aktiviteleri incele
+            Kataloğu incele
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           </button>
           <button class="btn btn--ghost btn--lg" type="button" onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'})">
-            Detay akışına git
+            Detay dosyasına git
           </button>
         </div>
       </div>
@@ -95,17 +95,17 @@
         <div class="stats-bar__divider" aria-hidden="true"></div>
         <div class="stats-bar__item">
           <strong>4</strong>
-          <span>Satın Alma Grubu</span>
+          <span>Program Grubu</span>
         </div>
         <div class="stats-bar__divider" aria-hidden="true"></div>
         <div class="stats-bar__item">
-          <strong>Direkt</strong>
-          <span>Video Referansı</span>
+          <strong>Video</strong>
+          <span>Direkt Referans</span>
         </div>
         <div class="stats-bar__divider" aria-hidden="true"></div>
         <div class="stats-bar__item">
-          <strong>IFM İçinde</strong>
-          <span>Render Görseller</span>
+          <strong>IFM</strong>
+          <span>Konsept Yerleşimi</span>
         </div>
       </div>
     </div>
@@ -113,17 +113,18 @@
     <section class="catalog" id="catalog" aria-label="Aktivite kataloğu">
       <div class="section-head">
         <p class="section-label">Aktivite Kataloğu</p>
-        <h2 class="section-title">Açılışta gerçekten <em>satılabilir</em><br>premium show önerileri</h2>
-        <p class="section-sub">Her kart gerçek bir aktiviteyi anlatır. Görseller IFM fotoğrafları üstüne show uygulanmış gibi yeniden kurgulanmıştır; referans videolar doğrudan YouTube linkidir.</p>
+        <h2 class="section-title">İFM AVM açılışı için seçilebilecek<br>premium aktivite paketleri</h2>
+        <p class="section-sub">Kartlar yalnızca aktiviteyi gösterir. Detay bölümünde ise neden önerildiği, hangi sahne mantığıyla kurgulandığı, teknik ihtiyaçları ve dünya benchmark referansları yer alır.</p>
       </div>
       <nav class="catalog-nav" data-catalog-nav aria-label="Aktivite kategorileri"></nav>
       <div class="catalog-body" data-catalog></div>
     </section>
 
-    <section class="details" id="details" aria-label="Aktivite detayları">
+    <section class="details" id="details" aria-label="Aktivite detay dosyası">
       <div class="section-head">
-        <p class="section-label">Detay Akışı</p>
-        <h2 class="section-title">Kartı aç, videoyu izle,<br>aynı sayfada <em>karar ver</em></h2>
+        <p class="section-label">Detay Dosyası</p>
+        <h2 class="section-title">Her aktivite için kreatif karar,<br>teknik kurgu ve saha okuması</h2>
+        <p class="section-sub">Bu bölüm, creative director, event planner ve teknik uygulama ekibi aynı masadaymış gibi okunacak şekilde kurgulandı.</p>
       </div>
       <div class="detail-board" data-detail-board></div>
     </section>
@@ -133,17 +134,18 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <span class="footer__ifm">İFM AVM Grand Opening</span>
-        <span class="footer__sub">Aktivite kataloğu • Metamice sunumu</span>
+        <span class="footer__sub">Aktivite kataloğu · Metamice sunumu</span>
       </div>
       <div class="footer__agency">
         <img class="footer__agency-logo" src="assets/brand/metamice-logo.jpeg" alt="Metamice">
-        <p class="footer__copy">Metamice tarafından hazırlanmıştır. Nihai seçim öncesi her aktivite ilgili teknik ekiplerle birlikte tekrar fizibiliteye alınmalıdır.</p>
+        <p class="footer__copy">Bu katalog, seçim öncesi ilk karar görüşmeleri için hazırlandı. Nihai shortlist sonrasında her aktivite teknik ölçüm, güvenlik, saha erişimi ve bütçe planına göre tekrar fizibiliteye alınmalıdır.</p>
       </div>
       <a class="footer__top" href="#top">↑ Başa dön</a>
     </div>
   </footer>
 
   <script src="data.js"></script>
+  <script src="research.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
