@@ -1,42 +1,149 @@
 <!doctype html>
 <html lang="tr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>İFM AVM Açılış Aktivite Kataloğu</title>
-    <meta name="description" content="İFM AVM açılışı için satılabilir premium aktivite kataloğu.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div class="progress-bar" data-progress aria-hidden="true"></div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İFM AVM — Grand Opening</title>
+  <meta name="description" content="İstanbul Finans Merkezi AVM açılışı için premium aktivite kataloğu">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress-bar" data-progress aria-hidden="true"></div>
 
-    <header class="site-header" data-header>
-      <div class="site-header__inner">
-        <a class="brand" href="#top">
-          <span class="brand__mark">İFM</span>
-          <span class="brand__label">Açılış Kataloğu</span>
-        </a>
-        <nav class="group-nav" data-group-nav aria-label="Bölüm menüsü"></nav>
-        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Menüyü aç/kapat">
-          <span></span><span></span><span></span>
-        </button>
+  <header class="header" data-header>
+    <div class="header__inner">
+      <a class="header__logo" href="#top" aria-label="İFM AVM Ana Sayfa">
+        <svg viewBox="0 0 585.83 585.83" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(168.86,292.47,-292.47,168.86,122.70,73.45)" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#73b76c"/>
+              <stop offset="0.59" stop-color="#1c7a44"/>
+              <stop offset="1" stop-color="#1c7a44"/>
+            </linearGradient>
+          </defs>
+          <g transform="matrix(1.333,0,0,-1.333,0,585.827)">
+            <g clip-path="inset(0)">
+              <g transform="translate(345.505,262.391)">
+                <path fill="#1d944c" d="m0,0v-25.663c0,-4.446-3.54,-8.051-7.909,-8.051v16.806l-8.654,-16.806h-5.043l-8.701,16.907v-16.907h-7.909v0c4.929,0,9.456,-2.718,11.775,-7.068l7.359,-13.814,11.122,20.882zm-38.216,0.001-14.091,-33.716h-7.861l-14.09,33.716h8.997l8.998,-22.342,5.671,14.001c2.041,5.042,6.937,8.341,12.376,8.341zm-41.727,-20.43-4.252,11.069-4.203,-11.069zm13.747,-13.286h-2.238c-3.895,0-7.389,2.44-8.789,6.14h-13.943l-2.324,-6.14h-8.75l13.842,33.716h8.356z"/>
+              </g>
+              <path fill="url(#lg)" d="M184.778,366.592v-146.906c19.63,0,35.548,16.199,35.548,36.182v16.443h70.064v31.574h-70.064v30.917h70.064v31.79zm-60.912,0h-0.001v-35.548h35.547v35.548zm-0.001,-51.588v-95.318-146.908h0.001 34.465v73.673l37.916,-73.673h21.971l37.706,73.233v-73.233c19.04,0,34.466,15.706,34.466,35.081v111.827h-0.514c-21.03,0-40.346,-11.597-50.232,-30.159l-32.405,-60.836-32.514,61.032c-9.823,18.441-29.015,29.963-49.91,29.963h-0.95c19.629,0,35.547,16.199,35.547,36.182v59.136z"/>
+            </g>
+          </g>
+        </svg>
+        <span class="header__logo-copy">
+          <strong>İFM AVM</strong>
+          <span>Premium aktivite kataloğu</span>
+        </span>
+      </a>
+
+      <nav class="header__nav" data-nav aria-label="Ana menü">
+        <a href="#catalog">Aktiviteler</a>
+        <a href="#details">Detay Akışı</a>
+      </nav>
+
+      <div class="header__actions">
+        <span class="header__date">14 Ağustos 2025</span>
+        <img class="header__agency-logo" src="assets/brand/metamice-logo.jpeg" alt="Metamice">
       </div>
-    </header>
 
-    <main id="top">
-      <section class="catalog" data-catalog aria-label="Aktivite kataloğu"></section>
+      <button class="header__burger" type="button" data-burger aria-expanded="false" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="header__mobile-menu" data-mobile-menu>
+      <a href="#catalog">Aktiviteler</a>
+      <a href="#details">Detay Akışı</a>
+    </div>
+  </header>
 
-      <section class="detail-board" data-detail-board aria-label="Aktivite detayları"></section>
-    </main>
+  <main id="top">
+    <section class="hero" id="hero" aria-label="Grand Opening">
+      <canvas class="hero__canvas" data-canvas aria-hidden="true"></canvas>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">
+          <span class="hero__eyebrow-dot"></span>
+          İstanbul Finans Merkezi AVM
+        </p>
+        <h1 class="hero__title">Grand<br>Opening</h1>
+        <p class="hero__sub">Müşteriye satılabilir, video referanslı ve IFM içinde gerçek show olarak kurgulanmış premium açılış aktiviteleri.</p>
+        <div class="hero__cta">
+          <button class="btn btn--green btn--lg" type="button" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
+            Aktiviteleri incele
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </button>
+          <button class="btn btn--ghost btn--lg" type="button" onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'})">
+            Detay akışına git
+          </button>
+        </div>
+      </div>
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <span>Kaydır</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
 
-    <footer class="site-footer">
-      <a class="back-to-top" href="#top" data-back-to-top aria-label="Başa dön">↑ Başa dön</a>
-    </footer>
+    <div class="stats-bar">
+      <div class="stats-bar__inner">
+        <div class="stats-bar__item">
+          <strong data-stat-total>24</strong>
+          <span>Aktivite Önerisi</span>
+        </div>
+        <div class="stats-bar__divider" aria-hidden="true"></div>
+        <div class="stats-bar__item">
+          <strong>4</strong>
+          <span>Satın Alma Grubu</span>
+        </div>
+        <div class="stats-bar__divider" aria-hidden="true"></div>
+        <div class="stats-bar__item">
+          <strong>Direkt</strong>
+          <span>Video Referansı</span>
+        </div>
+        <div class="stats-bar__divider" aria-hidden="true"></div>
+        <div class="stats-bar__item">
+          <strong>IFM İçinde</strong>
+          <span>Render Görseller</span>
+        </div>
+      </div>
+    </div>
 
-    <script src="data.js"></script>
-    <script src="app.js"></script>
-  </body>
+    <section class="catalog" id="catalog" aria-label="Aktivite kataloğu">
+      <div class="section-head">
+        <p class="section-label">Aktivite Kataloğu</p>
+        <h2 class="section-title">Açılışta gerçekten <em>satılabilir</em><br>premium show önerileri</h2>
+        <p class="section-sub">Her kart gerçek bir aktiviteyi anlatır. Görseller IFM fotoğrafları üstüne show uygulanmış gibi yeniden kurgulanmıştır; referans videolar doğrudan YouTube linkidir.</p>
+      </div>
+      <nav class="catalog-nav" data-catalog-nav aria-label="Aktivite kategorileri"></nav>
+      <div class="catalog-body" data-catalog></div>
+    </section>
+
+    <section class="details" id="details" aria-label="Aktivite detayları">
+      <div class="section-head">
+        <p class="section-label">Detay Akışı</p>
+        <h2 class="section-title">Kartı aç, videoyu izle,<br>aynı sayfada <em>karar ver</em></h2>
+      </div>
+      <div class="detail-board" data-detail-board></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__ifm">İFM AVM Grand Opening</span>
+        <span class="footer__sub">Aktivite kataloğu • Metamice sunumu</span>
+      </div>
+      <div class="footer__agency">
+        <img class="footer__agency-logo" src="assets/brand/metamice-logo.jpeg" alt="Metamice">
+        <p class="footer__copy">Metamice tarafından hazırlanmıştır. Nihai seçim öncesi her aktivite ilgili teknik ekiplerle birlikte tekrar fizibiliteye alınmalıdır.</p>
+      </div>
+      <a class="footer__top" href="#top">↑ Başa dön</a>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
