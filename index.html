@@ -5,17 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>İFM AVM Açılış Aktivite Kataloğu</title>
     <meta name="description" content="İFM AVM açılışı için satılabilir premium aktivite kataloğu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main>
-      <section class="intro" aria-label="Katalog açıklaması">
-        <p>İFM AVM açılışı için event ajansının müşteriye teklif edebileceği, video referanslı ve uygulanabilir premium aktivite kataloğu.</p>
-      </section>
+    <div class="progress-bar" data-progress aria-hidden="true"></div>
 
+    <header class="site-header" data-header>
+      <div class="site-header__inner">
+        <a class="brand" href="#top">
+          <span class="brand__mark">İFM</span>
+          <span class="brand__label">Açılış Kataloğu</span>
+        </a>
+        <nav class="group-nav" data-group-nav aria-label="Bölüm menüsü"></nav>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Menüyü aç/kapat">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
       <section class="catalog" data-catalog aria-label="Aktivite kataloğu"></section>
+
       <section class="detail-board" data-detail-board aria-label="Aktivite detayları"></section>
     </main>
+
+    <footer class="site-footer">
+      <a class="back-to-top" href="#top" data-back-to-top aria-label="Başa dön">↑ Başa dön</a>
+    </footer>
 
     <script src="data.js"></script>
     <script src="app.js"></script>
