@@ -14,15 +14,6 @@ function escapeHtml(value = "") {
     .replaceAll("'", "&#039;");
 }
 
-function youtubeEmbed(url) {
-  try {
-    const id = new URL(url).searchParams.get("v");
-    return id ? `https://www.youtube.com/embed/${escapeHtml(id)}` : "";
-  } catch {
-    return "";
-  }
-}
-
 function renderCatalog() {
   els.catalog.innerHTML = data.groups
     .map(([groupId, groupTitle]) => {
@@ -57,46 +48,38 @@ function renderCard(activity) {
 
 function renderDetails() {
   els.detailBoard.innerHTML = data.activities
-    .map((activity) => {
-      const embed = youtubeEmbed(activity.video[1]);
-      return `
-        <article class="activity-detail" id="detail-${escapeHtml(activity.id)}">
-          <div class="detail-copy">
-            <p class="eyebrow">${escapeHtml(activity.id)} · ${escapeHtml(activity.impact)} etki · ${escapeHtml(activity.difficulty)} operasyon</p>
-            <h2>${escapeHtml(activity.title)}</h2>
-            <section class="detail-block">
-              <h3>Aktivite Özeti</h3>
-              <p>${escapeHtml(activity.summary)}</p>
-            </section>
-            <section class="detail-block">
-              <h3>İFM İçin Kullanım Senaryosu</h3>
-              <p>${escapeHtml(activity.ifm)}</p>
-            </section>
-            <section class="detail-block">
-              <h3>Ziyaretçi Deneyimi</h3>
-              <p>${escapeHtml(activity.visitor)}</p>
-            </section>
-            <section class="detail-block">
-              <h3>Basın ve Sosyal Medya Değeri</h3>
-              <p>${escapeHtml(activity.media)}</p>
-            </section>
-            <section class="detail-block">
-              <h3>Operasyon Notları</h3>
-              <p>${escapeHtml(activity.ops)}</p>
-            </section>
-            <section class="detail-block">
-              <h3>Video Referansı</h3>
-              <a class="video-button detail-video" href="${escapeHtml(activity.video[1])}">${escapeHtml(activity.video[0])}</a>
-            </section>
-          </div>
-          ${embed ? `
-            <div class="video-frame">
-              <iframe src="${embed}" title="${escapeHtml(activity.title)} video referansı" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-          ` : ""}
-        </article>
-      `;
-    })
+    .map((activity) => `
+      <article class="activity-detail" id="detail-${escapeHtml(activity.id)}">
+        <div class="detail-copy">
+          <p class="eyebrow">${escapeHtml(activity.id)} · ${escapeHtml(activity.impact)} etki · ${escapeHtml(activity.difficulty)} operasyon</p>
+          <h2>${escapeHtml(activity.title)}</h2>
+          <section class="detail-block">
+            <h3>Aktivite Özeti</h3>
+            <p>${escapeHtml(activity.summary)}</p>
+          </section>
+          <section class="detail-block">
+            <h3>İFM İçin Kullanım Senaryosu</h3>
+            <p>${escapeHtml(activity.ifm)}</p>
+          </section>
+          <section class="detail-block">
+            <h3>Ziyaretçi Deneyimi</h3>
+            <p>${escapeHtml(activity.visitor)}</p>
+          </section>
+          <section class="detail-block">
+            <h3>Basın ve Sosyal Medya Değeri</h3>
+            <p>${escapeHtml(activity.media)}</p>
+          </section>
+          <section class="detail-block">
+            <h3>Operasyon Notları</h3>
+            <p>${escapeHtml(activity.ops)}</p>
+          </section>
+          <section class="detail-block">
+            <h3>Video Referansı</h3>
+            <a class="video-button detail-video" href="${escapeHtml(activity.video[1])}">${escapeHtml(activity.video[0])}</a>
+          </section>
+        </div>
+      </article>
+    `)
     .join("");
 }
 
