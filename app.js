@@ -52,6 +52,20 @@ function getThumbUrl(url = "") {
   return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "";
 }
 function getResearch(act) { return RESEARCH[act.id] || {}; }
+function getPressValue(act, research) {
+  if (research.press) return research.press;
+  if (act.tier === "Signature") {
+    return "Bas\u0131n ve influencer payla\u015f\u0131mlar\u0131nda tek karede okunabilecek ana a\u00e7\u0131l\u0131\u015f an\u0131 \u00fcretir.";
+  }
+  if (act.group === "moving") {
+    return "Hareketli performans yap\u0131s\u0131 sayesinde k\u0131sa video, Reels ve davetli story formatlar\u0131nda kolay yay\u0131l\u0131r.";
+  }
+  if (act.group === "arrival") {
+    return "VIP geli\u015f an\u0131n\u0131 fotojenik hale getirir; kar\u015f\u0131lama, protokol ve influencer i\u00e7eriklerinde temiz bir arka plan sa\u011flar.";
+  }
+  if (research.role && /bas\u0131n|Bas\u0131n|medya|influencer|hikaye/i.test(research.role)) return research.role;
+  return "Foto\u011fraf ve k\u0131sa video \u00fcretimine uygun, a\u00e7\u0131l\u0131\u015f sonras\u0131nda payla\u015f\u0131labilir net bir referans an\u0131 \u00fcretir.";
+}
 
 // ── Canvas — hero animasyonu + shooting stars ────────────────────────────────
 function initCanvas() {
@@ -326,16 +340,16 @@ function renderDetails() {
           </div>
           <div class="detail-grid">
             <section class="detail-block">
-              <h3>Açılıştaki Yeri</h3>
-              <p>${esc(research.role || act.ifm)}</p>
+              <h3>Bas\u0131n ve Sosyal Medya De\u011feri</h3>
+              <p>${esc(getPressValue(act, research))}</p>
             </section>
             <section class="detail-block">
-              <h3>IFM için Neden?</h3>
-              <p>${esc(research.creative || act.visitor)}</p>
+              <h3>Ziyaret\u00e7i Deneyimi</h3>
+              <p>${esc(act.visitor || research.creative || "Davetlinin kolay anlayaca\u011f\u0131, foto\u011fraf ve video ile aktarabilece\u011fi net bir deneyim \u00fcretir.")}</p>
             </section>
             <section class="detail-block">
-              <h3>Dünyadan Örnek</h3>
-              <p>${esc(research.benchmark || "Bu kategoride uluslararası sahneden referans işler mevcuttur.")}</p>
+              <h3>Operasyonel Notlar</h3>
+              <p>${esc(act.ops || research.site || "Yerle\u015fim, g\u00fcvenlik, enerji, prova ve kalabal\u0131k ak\u0131\u015f\u0131 uygulama \u00f6ncesinde teknik ekiplerle netle\u015ftirilmelidir.")}</p>
             </section>
           </div>
         </div>
