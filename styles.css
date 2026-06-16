@@ -253,8 +253,9 @@ img { display: block; max-width: 100%; }
   font-family: "Playfair Display", serif;
   font-size: clamp(72px, 12vw, 160px);
   font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  line-height: 1.04;
+  letter-spacing: -0.018em;
+  padding: 0.04em 0 0.10em;
   background: linear-gradient(160deg, #fff 32%, var(--green-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -682,16 +683,14 @@ img { display: block; max-width: 100%; }
 }
 .detail-video__poster {
   position: relative;
-  background:
-    linear-gradient(180deg, rgba(5, 8, 10, 0.12), rgba(5, 8, 10, 0.72)),
-    var(--video-thumb) center / cover;
+  background: var(--video-thumb) center / cover no-repeat;
 }
 .detail-video__scrim {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 75% 14%, rgba(94, 181, 118, 0.18), transparent 26%),
-    linear-gradient(180deg, rgba(5, 8, 10, 0.12), rgba(5, 8, 10, 0.78));
+    radial-gradient(circle at 78% 12%, rgba(94, 181, 118, 0.10), transparent 24%),
+    linear-gradient(180deg, rgba(5, 8, 10, 0.00) 0%, rgba(5, 8, 10, 0.04) 44%, rgba(5, 8, 10, 0.72) 100%);
 }
 .detail-video__content {
   position: absolute;
@@ -714,12 +713,14 @@ img { display: block; max-width: 100%; }
   font-family: "Playfair Display", serif;
   font-size: 28px;
   line-height: 1.05;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.62);
 }
 .detail-video__note {
   margin: 0 0 18px;
   font-size: 14px;
   line-height: 1.58;
   color: rgba(236, 242, 236, 0.82);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.62);
 }
 .detail-video__actions {
   display: flex;
@@ -931,7 +932,7 @@ img { display: block; max-width: 100%; }
 
 .hero__title {
   max-width: 9ch;
-  line-height: 0.92;
+  line-height: 1.04;
 }
 
 .hero__sub {
@@ -1094,7 +1095,7 @@ img { display: block; max-width: 100%; }
 
 .detail-video__poster,
 .detail-video__frame {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   border-radius: 24px;
 }
 

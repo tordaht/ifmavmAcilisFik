@@ -123,7 +123,7 @@ function initCanvas() {
       this.x = Math.random() * width * 1.3 - width * 0.15;
       this.y = cold ? Math.random() * height * 0.6 : -10 - Math.random() * 80;
       this.len = 50 + Math.random() * 130;
-      this.speed = 3 + Math.random() * 4;
+      this.speed = 2.4 + Math.random() * 2.6;
       this.angle = 0.85 + (Math.random() - 0.5) * 0.35; // ~49°
       this.a = 0.55 + Math.random() * 0.45;
       this.life = cold ? Math.random() * 60 : 0;
@@ -161,7 +161,7 @@ function initCanvas() {
     particles     = Array.from({ length: 50 }, () => new Particle());
     twinklers     = Array.from({ length: 80 }, () => new Twinkler());
     beams         = Array.from({ length: 6  }, () => new Beam());
-    shootingStars = Array.from({ length: 3  }, () => new ShootingStar());
+    shootingStars = Array.from({ length: 6  }, () => new ShootingStar());
   }
 
   let shootingStarTimer = 0;
@@ -174,7 +174,7 @@ function initCanvas() {
     particles.forEach(p => { p.update(); p.draw(); });
     // shooting stars
     shootingStarTimer++;
-    if (shootingStarTimer > 140) {
+    if (shootingStarTimer > 55) {
       shootingStarTimer = 0;
       shootingStars.push(new ShootingStar());
     }
@@ -240,7 +240,7 @@ function renderCard(act) {
   const tier = TIER_LABEL[act.tier] || {};
   return `
     <article class="activity-card${hasImage ? '' : ' no-image'}" id="card-${esc(act.id)}" ${hasImage ? `style="--card-img:url('${esc(act.image)}')"` : ''} role="button" tabindex="0" data-scroll-to="detail-${esc(act.id)}" data-scenario-ids="${esc((act.scenario||[]).join(','))}" aria-label="${esc(act.title)} detayına git">
-      ${videoUrl ? `<a class="card-media-link" href="${esc(videoUrl)}" aria-label="${esc(act.title)} YouTube'da izle"></a>` : ''}
+      ${videoUrl ? `<a class="card-media-link" href="${esc(videoUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(act.title)} YouTube'da izle"></a>` : ''}
       <div class="card-badges">
         <span class="card-id-badge">${esc(act.id)}</span>
         ${tier.label ? `<span class="card-tier-badge ${tier.cls}">${esc(tier.label)}</span>` : ''}
@@ -278,7 +278,7 @@ function renderVideoPanel(act, research) {
   const posterImg = hasActImg ? act.image : getThumbUrl(videoUrl);
   const posterStyle = posterImg ? `style="--video-thumb:url('${esc(posterImg)}')"` : "";
   return `
-    <a class="detail-video" href="${esc(videoUrl)}" aria-label="${esc(act.title)} — YouTube'da izle">
+    <a class="detail-video" href="${esc(videoUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(act.title)} — YouTube'da izle">
       <div class="detail-video__poster" ${posterStyle}>
         <div class="detail-video__scrim"></div>
         <div class="detail-video__content">
@@ -303,7 +303,6 @@ function renderDetails() {
     const tier = TIER_LABEL[act.tier] || {};
     return `
       <article class="detail-card" id="detail-${esc(act.id)}">
-        ${hasImage ? `<div class="detail-hero-image"><img src="${esc(act.image)}" alt="${esc(act.title)}" loading="lazy"></div>` : `<div class="detail-hero-image detail-hero-image--empty"></div>`}
         <div class="detail-inner">
           <div class="detail-meta-row">
             <span class="detail-id">${esc(act.id)}</span>
@@ -376,7 +375,7 @@ function initScenarioFilter() {
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
 function initReveal() {
   const CARD_TARGETS    = ".activity-card, .detail-card";
-  const SECTION_TARGETS = ".section-head, .cat-group__head, .detail-block, .stats-bar__item, .catalog-nav, .detail-hero-image";
+  const SECTION_TARGETS = ".section-head, .cat-group__head, .detail-block, .stats-bar__item, .catalog-nav";
 
   const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
