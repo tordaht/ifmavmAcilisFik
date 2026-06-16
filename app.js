@@ -10,7 +10,7 @@ const ELS = {
   mobileMenu:  $('[data-mobile-menu]'),
   canvas:      $('[data-canvas]'),
   progress:    $('[data-progress]'),
-  topButton:   $('[data-top-button]'),
+  pageNavigator: $('[data-page-navigator]'),
   catalogNav:  $('[data-catalog-nav]'),
   catalog:     $('[data-catalog]'),
   detailBoard: $('[data-detail-board]'),
@@ -229,7 +229,7 @@ function initCanvas() {
 function initHeader() {
   const onScroll = () => {
     ELS.header.classList.toggle("is-scrolled", window.scrollY > 10);
-    ELS.topButton?.classList.toggle("is-visible", window.scrollY > 320);
+    ELS.pageNavigator?.classList.toggle("is-visible", window.scrollY > 220);
     const doc = document.documentElement;
     const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
     ELS.progress.style.width = `${Math.min(100, pct)}%`;
@@ -249,11 +249,71 @@ function initHeader() {
   });
 }
 
-function initBackToTop() {
-  if (!ELS.topButton) return;
-  ELS.topButton.addEventListener("click", () => {
-    document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+function initPageNavigator() {
+  if (!ELS.pageNavigator) return;
+  const links = $$("[data-page-nav]", ELS.pageNavigator);
+  const navTargets = links.map(link => {
+    const hrefId = link.getAttribute("href")?.replace("#", "");
+    const observeId = link.dataset.pageNav === "top" ? "hero" : hrefId;
+    const target = document.getElementById(hrefId);
+    const observed = document.getElementById(observeId);
+    return { id: link.dataset.pageNav, link, target, observed };
+  }).filter(item => item.target && item.observed);
+
+  links.forEach(link => {
+    link.addEventListener("click", (e) => {
+      const target = document.getElementById(link.getAttribute("href").replace("#", ""));
+      if (!target) return;
+      e.preventDefault();
+      setActive(link.dataset.pageNav);
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
+
+  const setActive = (id) => {
+    links.forEach(link => {
+      const active = link.dataset.pageNav === id;
+      link.classList.toggle("is-active", active);
+      link.querySelector(".page-navigator__dot")?.classList.toggle("is-active", active);
+    });
+  };
+
+  let ticking = false;
+  const updateActive = () => {
+    ticking = false;
+    ELS.pageNavigator?.classList.toggle("is-visible", window.scrollY > 220);
+    const marker = window.scrollY + window.innerHeight * 0.42;
+    const ordered = navTargets
+      .slice()
+      .sort((a, b) => a.observed.offsetTop - b.observed.offsetTop);
+    const current = ordered.reduce((active, item) => {
+      return item.observed.offsetTop <= marker ? item : active;
+    }, ordered[0]);
+    if (current?.id) setActive(current.id);
+  };
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateActive);
+  };
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate, { passive: true });
+  window.addEventListener("hashchange", requestUpdate, { passive: true });
+  requestUpdate();
+  window.setTimeout(requestUpdate, 120);
+  window.setTimeout(requestUpdate, 520);
+
+  const initialHash = window.location.hash?.replace("#", "");
+  const initialTarget = navTargets.find(item => item.target.id === initialHash || item.id === initialHash);
+  if (initialTarget) {
+    window.setTimeout(() => {
+      initialTarget.target.scrollIntoView({ behavior: "auto", block: "start" });
+      ELS.pageNavigator?.classList.toggle("is-visible", window.scrollY > 220);
+      setActive(initialTarget.id);
+      requestUpdate();
+    }, 180);
+  }
 }
 
 // ── Catalog nav + senaryo tabs ────────────────────────────────────────────────
@@ -508,6 +568,6 @@ requestAnimationFrame(() => {
 });
 
 initHeader();
-initBackToTop();
+initPageNavigator();
 initCanvas();
 initVideoPanels();

@@ -8,14 +8,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260616-nav-rail-5">
 </head>
 <body>
   <div class="progress-bar" data-progress aria-hidden="true"></div>
-  <button class="back-to-top" type="button" data-top-button aria-label="Başa dön">
-    <span class="back-to-top__icon" aria-hidden="true">↑</span>
-    <span class="back-to-top__label">Yukarı</span>
-  </button>
+  <nav class="page-navigator" data-page-navigator aria-label="Sayfa içi navigasyon">
+    <a href="#catalog" data-page-nav="catalog" aria-label="Aktivite kataloğuna git">
+      <span class="page-navigator__dot" aria-hidden="true"></span>
+      <span class="page-navigator__label">Katalog</span>
+    </a>
+    <a href="#group-hero" data-page-nav="group-hero" aria-label="Hero deneyimlere git">
+      <span class="page-navigator__dot" aria-hidden="true"></span>
+      <span class="page-navigator__label">Hero</span>
+    </a>
+    <a href="#group-arrival" data-page-nav="group-arrival" aria-label="Premium karşılama aktivitelerine git">
+      <span class="page-navigator__dot" aria-hidden="true"></span>
+      <span class="page-navigator__label">Karşılama</span>
+    </a>
+    <a href="#group-immersive" data-page-nav="group-immersive" aria-label="İmmersive enstalasyonlara git">
+      <span class="page-navigator__dot" aria-hidden="true"></span>
+      <span class="page-navigator__label">Enstalasyon</span>
+    </a>
+    <a href="#group-moving" data-page-nav="group-moving" aria-label="Hareketli performanslara git">
+      <span class="page-navigator__dot" aria-hidden="true"></span>
+      <span class="page-navigator__label">Performans</span>
+    </a>
+    <a href="#details" data-page-nav="details" aria-label="Detay dosyasına git">
+      <span class="page-navigator__dot" aria-hidden="true"></span>
+      <span class="page-navigator__label">Detay</span>
+    </a>
+    <a class="page-navigator__top" href="#top" data-page-nav="top" aria-label="Sayfanın tepesine dön">
+      <span class="page-navigator__arrow" aria-hidden="true">↑</span>
+      <span class="page-navigator__label">Tepeye Git</span>
+    </a>
+  </nav>
 
   <header class="header" data-header>
     <div class="header__inner">
@@ -148,8 +174,8 @@
     </div>
   </footer>
 
-  <script src="data.js"></script>
-  <script src="research.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=20260616-copy"></script>
+  <script src="research.js?v=20260616-research"></script>
+  <script src="app.js?v=20260616-nav-rail-5"></script>
 </body>
 </html>
