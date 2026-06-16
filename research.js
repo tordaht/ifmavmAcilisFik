@@ -245,9 +245,11 @@
       intro: "Kinetic Sculpture Plaza, açılış alanına hareket eden bir sanat objesi koyar. Etkiyi sahneye değil mekana dağıtmak istendiğinde güçlü bir seçenektir.",
       role: "Plaza veya ana ortak alanda kalıcıya yakın bir geçici imza obje olarak kullanılır.",
       creative: "Objenin görsel dili heykelse ve temiz kalmalı; mekanik hareket estetikten önce gelmemelidir.",
-      benchmark: "Kinetik sanat benchmark'leri, iyi seçilmiş tek bir hareketli objenin markanın sofistike algısına büyük katkı verebildiğini gösteriyor.",
-      referenceName: "Kinetic sculpture benchmark",
-      referenceNote: "Referans, hareketli objenin tek başına nasıl bir odak noktası olabildiğini okumak için seçildi.",
+      benchmark: "ART+COM'un BMW Museum kinetik heykeli ve Kinetic Rain gibi işler, iyi seçilmiş tek bir hareketli objenin markanın sofistike algısına büyük katkı verebildiğini gösteriyor.",
+      referenceName: "ART+COM - Kinetic Sculpture",
+      referenceNote: "Referans, motorlu fiziksel objelerin ışık show değil heykel diliyle nasıl odak noktası olabildiğini okumak için seçildi.",
+      sourceName: "ART+COM Studios",
+      sourceUrl: "https://www.artcom.de/en/project/kinetic-sculpture/",
       visualNote: "Bu iş, İFM'de 'sahne prop'u' gibi değil heykel gibi oturmalıdır."
     },
     A16: {

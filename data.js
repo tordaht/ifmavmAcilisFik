@@ -256,7 +256,7 @@ window.IFM_ACTIVITY_CATALOG = {
       impact: "Yüksek",
       difficulty: "Yüksek",
       image: "assets/generated/A15-kinetic-sculpture.png",
-      video: ["Video Referansı", "https://www.youtube.com/watch?v=8-hxsm8lDps"],
+      video: ["Video Referansı", "https://www.youtube.com/watch?v=Pb4lUd2zO3w"],
       summary: "Açılış alanına hareket eden bir sanat objesi yerleştirir. Gösteri gibi değil, mekanın imza parçası gibi çalışır.",
       ifm: "Atrium boşluğu veya dış plaza merkezinde güvenli mesafe ile kurulur.",
       visitor: "Objenin yanında durur, izler ve fotoğraf çeker. Üst segment bir deneyim hissi verir.",

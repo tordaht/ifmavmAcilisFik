@@ -251,11 +251,12 @@ img { display: block; max-width: 100%; }
 .hero__title {
   margin: 0 0 24px;
   font-family: "Playfair Display", serif;
-  font-size: clamp(72px, 12vw, 160px);
+  font-size: clamp(64px, 10.5vw, 138px);
   font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: -0.018em;
-  padding: 0.04em 0 0.10em;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  padding: 0.08em 0 0.18em;
+  overflow: visible;
   background: linear-gradient(160deg, #fff 32%, var(--green-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -613,6 +614,9 @@ img { display: block; max-width: 100%; }
   transform: translateY(18px);
   transition: opacity 650ms var(--ease), transform 650ms var(--ease), border-color 220ms ease;
 }
+.detail-card > .detail-hero-image {
+  display: none !important;
+}
 .detail-card.visible { opacity: 1; transform: translateY(0); }
 .detail-card.highlighted { border-color: var(--line-green); }
 .detail-card::after {
@@ -932,7 +936,7 @@ img { display: block; max-width: 100%; }
 
 .hero__title {
   max-width: 9ch;
-  line-height: 1.04;
+  line-height: 1.12;
 }
 
 .hero__sub {
