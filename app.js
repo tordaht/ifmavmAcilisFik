@@ -54,17 +54,33 @@ function getThumbUrl(url = "") {
 function getResearch(act) { return RESEARCH[act.id] || {}; }
 function getPressValue(act, research) {
   if (research.press) return research.press;
-  if (act.tier === "Signature") {
-    return "Bas\u0131n ve influencer payla\u015f\u0131mlar\u0131nda tek karede okunabilecek ana a\u00e7\u0131l\u0131\u015f an\u0131 \u00fcretir.";
-  }
-  if (act.group === "moving") {
-    return "Hareketli performans yap\u0131s\u0131 sayesinde k\u0131sa video, Reels ve davetli story formatlar\u0131nda kolay yay\u0131l\u0131r.";
-  }
-  if (act.group === "arrival") {
-    return "VIP geli\u015f an\u0131n\u0131 fotojenik hale getirir; kar\u015f\u0131lama, protokol ve influencer i\u00e7eriklerinde temiz bir arka plan sa\u011flar.";
-  }
-  if (research.role && /bas\u0131n|Bas\u0131n|medya|influencer|hikaye/i.test(research.role)) return research.role;
-  return "Foto\u011fraf ve k\u0131sa video \u00fcretimine uygun, a\u00e7\u0131l\u0131\u015f sonras\u0131nda payla\u015f\u0131labilir net bir referans an\u0131 \u00fcretir.";
+  const PRESS = {
+    A01: "Basın için en güçlü final karesi: IFM logosu, İstanbul silueti ve kalabalık aynı anlatıda buluşur. Sosyal medyada tek bakışta anlaşılan, yüksek etkili kapanış videosu üretir.",
+    A02: "Protokol fotoğrafını standart kurdele karesinden çıkarıp haber görseline dönüştürür. Basın açılış anını bina ile birlikte verir; sosyal medya aynı saniyeyi kısa video olarak taşır.",
+    A03: "Mekanın ölçeğini tek karede gösterdiği için mimari ve yaşam basınına güçlü görsel verir. Yukarı bakan videolar, klasik sahne çekimlerinden hemen ayrışır.",
+    A04: "Uluslararası ekip bilgisi, açılıştan önce bile haber değeri yaratır. Gece sonrası basında 'kim sahne aldı' başlığına, sosyal medyada ise imza performans anına dönüşür.",
+    A05: "Açılışa teknoloji vitrini kazandırır ve iş/teknoloji basınına net bir konu verir. Kısa formatı sayesinde sahne akışını bozmadan paylaşılabilir bir an üretir.",
+    A06: "Gece çekimlerinde binayı bir haber görseli haline getirir. Ekonomi, gayrimenkul ve şehir yaşamı basını için IFM'nin mimari kimliğini güçlü gösterir.",
+    A07: "Arrival fotoğraflarını kontrol altına alır; cemiyet ve moda/lifestyle basınına temiz arka plan verir. Her konuk için paylaşılabilir, premium bir giriş karesi üretir.",
+    A08: "Davetlinin hareketiyle çalışan sistem, basın için kolay anlatılır bir teknoloji konusu yaratır. Sosyal medyada 'ben deneyimledim' içeriğini tetikler.",
+    A09: "Yakın çekimde güçlü çalıştığı için teknoloji ve etkinlik basınına net demo görüntüsü verir. Holografik etki, kısa videoda açıklama istemeden anlaşılır.",
+    A10: "VIP geçişini haber değeri taşıyan bir karşılama fotoğrafına dönüştürür. Basın için giriş anı, sosyal medya için kişisel arrival videosu üretir.",
+    A11: "Statik tabela yerine hareketli karşılama objesi sunduğu için kurumsal iletişim ve teknoloji basınında kullanılabilir bir detay yaratır. Logo ve mesaj görünürlüğü kontrollüdür.",
+    A12: "Portre ve yürüyüş çekimlerini premiumlaştırır; cemiyet basını için temiz, tekrar kullanılabilir arka plan sağlar. Sosyal medyada sakin ama şık bir giriş ritmi üretir.",
+    A13: "Mekan içinde akan görsel rota, basına 'alışveriş merkezinde deneyim tasarımı' başlığı verir. Ziyaretçi videolarında IFM'nin iç hareketini görünür kılar.",
+    A14: "Gün boyu çalışan enstalasyon, basın turu ve influencer içerikleri için sürekli görsel kaynak oluşturur. Her saat farklı ışık ve kalabalıkla yeni kare üretir.",
+    A15: "Sanat objesi niteliği sayesinde kültür-sanat ve mimari basına da açılır. Sosyal medyada sadece efekt değil, izlenebilir ve hatırlanabilir bir mekan imzası verir.",
+    A16: "Su veya sis perdesi basın fotoğrafında alışılmış LED görüntüsünden ayrışır. Final veya bölüm geçişi için sinematik ve yüksek haber değeri taşıyan video üretir.",
+    A17: "Tavan objesi, mekan fotoğraflarına güçlü bir atmosfer katmanı ekler. Basın için mimari ölçeği, sosyal medya için yukarı bakan etkileyici videoyu besler.",
+    A18: "Medya sanat dili, açılışı reklamdan çok kültürel bir deneyim olarak konumlar. Basın için sanat-teknoloji kesişimi, sosyal medya için rafine bir görsel yüzey sunar.",
+    A19: "Gezici ekip, basına programın AVM geneline yayıldığını gösterir. Tek bir sahneye bağlı kalmadan farklı noktalardan çok sayıda haber ve sosyal medya karesi üretir.",
+    A20: "Kısa ve enerjik format, basın ve TV/dijital haber montajlarında kolay kullanılır. Sosyal medyada hızlı tüketilen, anlaşılır sahne anı üretir.",
+    A21: "Canlı müzik ve aerial sahneleme birleştiğinde kültür-sanat ve cemiyet basını için güçlü bir gece anı oluşur. Yukarı bakan çekimler sosyal medyada belirgin ayrışır.",
+    A22: "Ritim, kalabalığı hareketlendirirken basın kameraları için canlı atmosfer görüntüsü sağlar. Sosyal medyada sesli izlenen, enerjisi yüksek içerikler üretir.",
+    A23: "Kalabalığın aynı anda ışığa dahil olması, basın için ölçek ve katılım fotoğrafı üretir. Sosyal medyada en çok etiketlenebilecek kolektif final anıdır.",
+    A24: "Müzik ve teknoloji aynı anda göründüğü için teknoloji, kültür-sanat ve etkinlik basınına güçlü bir sahne detayı verir. Kısa videoda etkisi hemen anlaşılır."
+  };
+  return PRESS[act.id] || "Foto\u011fraf ve k\u0131sa video \u00fcretimine uygun, a\u00e7\u0131l\u0131\u015ftan sonra payla\u015f\u0131labilir net bir referans an\u0131 \u00fcretir.";
 }
 
 // ── Canvas — hero animasyonu + shooting stars ────────────────────────────────
