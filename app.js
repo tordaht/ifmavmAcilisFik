@@ -10,6 +10,7 @@ const ELS = {
   mobileMenu:  $('[data-mobile-menu]'),
   canvas:      $('[data-canvas]'),
   progress:    $('[data-progress]'),
+  topButton:   $('[data-top-button]'),
   catalogNav:  $('[data-catalog-nav]'),
   catalog:     $('[data-catalog]'),
   detailBoard: $('[data-detail-board]'),
@@ -198,6 +199,7 @@ function initCanvas() {
 function initHeader() {
   const onScroll = () => {
     ELS.header.classList.toggle("is-scrolled", window.scrollY > 10);
+    ELS.topButton?.classList.toggle("is-visible", window.scrollY > 320);
     const doc = document.documentElement;
     const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
     ELS.progress.style.width = `${Math.min(100, pct)}%`;
@@ -214,6 +216,13 @@ function initHeader() {
     ELS.mobileMenu.classList.remove("is-open");
     ELS.burger.classList.remove("is-open");
     ELS.burger.setAttribute("aria-expanded", "false");
+  });
+}
+
+function initBackToTop() {
+  if (!ELS.topButton) return;
+  ELS.topButton.addEventListener("click", () => {
+    document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
 
@@ -457,5 +466,6 @@ requestAnimationFrame(() => {
 });
 
 initHeader();
+initBackToTop();
 initCanvas();
 initVideoPanels();
