@@ -340,14 +340,26 @@ function renderDetails() {
           </div>
           <div class="detail-grid">
             <section class="detail-block">
+              <h3>Açılıştaki Yeri</h3>
+              <p>${esc(research.role || act.ifm)}</p>
+            </section>
+            <section class="detail-block">
+              <h3>IFM için Neden?</h3>
+              <p>${esc(research.creative || act.visitor)}</p>
+            </section>
+            <section class="detail-block">
+              <h3>Dünyadan Örnek</h3>
+              <p>${esc(research.benchmark || "Bu kategoride uluslararası sahneden referans işler mevcuttur.")}</p>
+            </section>
+            <section class="detail-block detail-block--client">
               <h3>Bas\u0131n ve Sosyal Medya De\u011feri</h3>
               <p>${esc(getPressValue(act, research))}</p>
             </section>
-            <section class="detail-block">
+            <section class="detail-block detail-block--client">
               <h3>Ziyaret\u00e7i Deneyimi</h3>
               <p>${esc(act.visitor || research.creative || "Davetlinin kolay anlayaca\u011f\u0131, foto\u011fraf ve video ile aktarabilece\u011fi net bir deneyim \u00fcretir.")}</p>
             </section>
-            <section class="detail-block">
+            <section class="detail-block detail-block--client">
               <h3>Operasyonel Notlar</h3>
               <p>${esc(act.ops || research.site || "Yerle\u015fim, g\u00fcvenlik, enerji, prova ve kalabal\u0131k ak\u0131\u015f\u0131 uygulama \u00f6ncesinde teknik ekiplerle netle\u015ftirilmelidir.")}</p>
             </section>

@@ -821,6 +821,10 @@ img { display: block; max-width: 100%; }
   line-height: 1.72;
   color: var(--muted);
 }
+.detail-block--client {
+  border-color: rgba(115, 183, 108, 0.18);
+  background: rgba(115, 183, 108, 0.045);
+}
 
 .footer {
   border-top: 1px solid var(--line);
