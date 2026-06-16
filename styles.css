@@ -464,6 +464,44 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 0 0 1px var(--line-green), 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(29, 148, 76, 0.08);
 }
 .activity-card:hover::before { transform: scale(1.05); }
+.card-media-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.card-media-link::after {
+  content: "Video izle";
+  position: absolute;
+  top: 54px;
+  right: 14px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(4, 9, 8, 0.58);
+  color: rgba(246, 250, 247, 0.94);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  backdrop-filter: blur(14px);
+  transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+.card-media-link:hover::after,
+.card-media-link:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(99, 223, 134, 0.42);
+}
+.card-media-link:focus-visible {
+  outline: 2px solid rgba(99, 223, 134, 0.65);
+  outline-offset: -5px;
+}
 .card-badge {
   position: absolute;
   top: 14px;
@@ -619,8 +657,19 @@ img { display: block; max-width: 100%; }
   color: var(--soft);
 }
 .detail-video {
-  display: grid;
-  gap: 14px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.detail-video:hover .detail-video__poster {
+  box-shadow: 0 0 0 2px rgba(97, 214, 130, 0.4), 0 20px 56px rgba(0,0,0,0.5);
+}
+.detail-video:hover .detail-video__poster img,
+.detail-video:hover .detail-video__poster::before {
+  transform: scale(1.03);
 }
 .detail-video__poster, .detail-video__frame {
   width: 100%;
@@ -629,6 +678,7 @@ img { display: block; max-width: 100%; }
   border-radius: 24px;
   overflow: hidden;
   background: #0b0f12;
+  transition: box-shadow 260ms ease;
 }
 .detail-video__poster {
   position: relative;
@@ -801,42 +851,104 @@ img { display: block; max-width: 100%; }
   .detail-video__title { font-size: 23px; }
 }
 
+/* ── Scroll-reveal: section elements ────────────────────────────── */
+.section-head,
+.cat-group__head,
+.detail-block,
+.catalog-nav {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 760ms var(--ease), transform 760ms var(--ease);
+}
+.stats-bar__item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 560ms var(--ease), transform 560ms var(--ease);
+}
+.section-head.visible,
+.cat-group__head.visible,
+.detail-block.visible,
+.catalog-nav.visible,
+.stats-bar__item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger siblings slightly */
+.stats-bar__item:nth-child(2) { transition-delay: 80ms; }
+.stats-bar__item:nth-child(3) { transition-delay: 160ms; }
+.stats-bar__item:nth-child(4) { transition-delay: 240ms; }
+
+.detail-block:nth-child(2) { transition-delay: 60ms; }
+.detail-block:nth-child(3) { transition-delay: 120ms; }
+.detail-block:nth-child(4) { transition-delay: 60ms; }
+.detail-block:nth-child(5) { transition-delay: 120ms; }
+.detail-block:nth-child(6) { transition-delay: 180ms; }
+
+/* Cards: stagger in grid rows */
+.card-grid .activity-card:nth-child(2) { transition-delay: 80ms; }
+.card-grid .activity-card:nth-child(3) { transition-delay: 160ms; }
+.card-grid .activity-card:nth-child(4) { transition-delay: 240ms; }
+
 @media (prefers-reduced-motion: reduce) {
   .activity-card, .detail-card, .activity-card::before { transition: none; opacity: 1; transform: none; }
+  .section-head, .cat-group__head, .detail-block, .catalog-nav, .stats-bar__item {
+    opacity: 1; transform: none; transition: none;
+  }
 }
 
 /* V2 art direction overrides */
 .hero {
   position: relative;
   isolation: isolate;
+  align-items: flex-start;
   background:
-    linear-gradient(90deg, rgba(5, 11, 12, 0.92) 0%, rgba(5, 11, 12, 0.82) 35%, rgba(5, 11, 12, 0.38) 68%, rgba(5, 11, 12, 0.28) 100%),
+    linear-gradient(90deg, rgba(5, 11, 12, 0.96) 0%, rgba(5, 11, 12, 0.88) 38%, rgba(5, 11, 12, 0.44) 65%, rgba(5, 11, 12, 0.18) 100%),
     url("assets/hero/ifm-opening-key-visual.webp") center right / cover no-repeat;
   min-height: 88svh;
 }
 
 .hero__overlay {
   background:
-    radial-gradient(circle at 82% 18%, rgba(167, 232, 255, 0.22), transparent 24%),
-    linear-gradient(180deg, rgba(4, 8, 9, 0.12), rgba(4, 8, 9, 0.66));
+    radial-gradient(circle at 82% 18%, rgba(167, 232, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 22% 62%, rgba(29, 148, 76, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(4, 8, 9, 0.08), rgba(4, 8, 9, 0.62));
 }
 
 .hero__content {
-  max-width: 720px;
-  padding-top: 140px;
-  padding-bottom: 120px;
+  text-align: left;
+  max-width: 680px;
+  padding-top: clamp(110px, 14vh, 160px);
+  padding-bottom: 100px;
+  padding-left: clamp(24px, 5.5vw, 88px);
+  padding-right: 24px;
+  margin: 0;
+}
+
+.hero__eyebrow {
+  justify-content: flex-start;
 }
 
 .hero__title {
-  max-width: 7ch;
-  line-height: 0.94;
+  max-width: 9ch;
+  line-height: 0.92;
 }
 
 .hero__sub {
-  max-width: 60ch;
+  max-width: 54ch;
+  margin-left: 0;
   font-size: 18px;
   line-height: 1.72;
-  color: rgba(237, 243, 238, 0.88);
+  color: rgba(237, 243, 238, 0.84);
+}
+
+.hero__cta {
+  justify-content: flex-start;
+}
+
+.hero__scroll-hint {
+  left: clamp(24px, 5.5vw, 88px);
+  transform: none;
 }
 
 .section-title {
@@ -855,9 +967,50 @@ img { display: block; max-width: 100%; }
   line-height: 1.8;
 }
 
-.catalog {
-  padding-top: 88px;
+/* Section separator lines */
+.catalog::before,
+.details::before {
+  content: "";
+  display: block;
+  width: min(var(--max), calc(100% - 80px));
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--line-green) 30%, var(--line-green) 70%, transparent);
 }
+
+.catalog {
+  padding-top: 80px;
+}
+
+/* Stats bar animate on reveal */
+.stats-bar__item strong {
+  display: inline-block;
+  transition: transform 400ms var(--ease);
+}
+.stats-bar__item.visible strong {
+  transform: scale(1.06);
+  animation: statPop 0.4s var(--ease) forwards;
+}
+@keyframes statPop {
+  0%   { transform: scale(0.88); }
+  65%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Catalog nav enhanced */
+.catalog-nav a {
+  position: relative;
+  overflow: hidden;
+}
+.catalog-nav a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--green-muted), transparent);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.catalog-nav a.is-active::after { opacity: 1; }
 
 .cat-group__title {
   letter-spacing: 0.01em;
@@ -939,11 +1092,6 @@ img { display: block; max-width: 100%; }
   color: var(--muted);
 }
 
-.detail-video {
-  display: grid;
-  gap: 14px;
-}
-
 .detail-video__poster,
 .detail-video__frame {
   aspect-ratio: 16 / 10;
@@ -1003,11 +1151,27 @@ img { display: block; max-width: 100%; }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 860px) {
   .hero {
-    background-position: 72% center;
+    background-position: 68% center;
+    background:
+      linear-gradient(180deg, rgba(5, 11, 12, 0.88) 0%, rgba(5, 11, 12, 0.72) 50%, rgba(5, 11, 12, 0.88) 100%),
+      linear-gradient(90deg, rgba(5, 11, 12, 0.94) 0%, rgba(5, 11, 12, 0.6) 60%, rgba(5, 11, 12, 0.2) 100%),
+      url("assets/hero/ifm-opening-key-visual.webp") 68% center / cover no-repeat;
   }
 
+  .hero__content {
+    text-align: left;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero__scroll-hint {
+    left: 24px;
+  }
+}
+
+@media (max-width: 600px) {
   .hero__content {
     padding-top: 118px;
     padding-bottom: 96px;
@@ -1019,4 +1183,305 @@ img { display: block; max-width: 100%; }
     font-size: 15px;
     line-height: 1.72;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SENARYO FİLTRE TABLARI
+══════════════════════════════════════════════════════════════════ */
+.catalog-nav__groups {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scenario-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+
+.scenario-tab {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  white-space: nowrap;
+}
+.scenario-tab:hover {
+  color: var(--soft);
+  background: rgba(255, 255, 255, 0.07);
+}
+.scenario-tab.is-active {
+  color: #fff;
+  background: var(--green);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 4px var(--green-glow), 0 4px 16px rgba(29, 148, 76, 0.35);
+}
+
+.catalog-nav {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  padding: 16px 24px;
+  border-radius: var(--r-lg);
+  background: rgba(9, 16, 13, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   KARTLARDAKİ ROZETLER
+══════════════════════════════════════════════════════════════════ */
+
+/* Kart üst bölge – rozet grubu */
+.card-badges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.card-id-badge {
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 8, 10, 0.62);
+  backdrop-filter: blur(8px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--soft);
+}
+
+/* Tier rozetleri */
+.card-tier-badge {
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+.card-tier-badge.tier--signature {
+  background: rgba(201, 168, 76, 0.22);
+  border: 1px solid rgba(201, 168, 76, 0.42);
+  color: #e8c978;
+}
+.card-tier-badge.tier--premium {
+  background: rgba(180, 220, 255, 0.14);
+  border: 1px solid rgba(180, 220, 255, 0.32);
+  color: #a8d8f8;
+}
+.card-tier-badge.tier--deneyim {
+  background: rgba(29, 148, 76, 0.18);
+  border: 1px solid rgba(29, 148, 76, 0.34);
+  color: var(--green-light);
+}
+
+/* Media erişim rozeti (sağ üst) */
+/* CTA metin */
+.card-cta {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green-light);
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.activity-card:hover .card-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BÜYÜTÜLMÜŞ KART GÖRSELLERİ
+══════════════════════════════════════════════════════════════════ */
+.activity-card {
+  min-height: 520px;
+}
+.card-body {
+  min-height: 520px;
+}
+
+/* Placeholder kart (A01 — görsel yok) */
+.activity-card.no-image {
+  background:
+    radial-gradient(circle at 30% 40%, rgba(29, 148, 76, 0.12), transparent 55%),
+    linear-gradient(160deg, #0b1812 0%, #060c0a 100%);
+}
+.activity-card.no-image::before {
+  background:
+    linear-gradient(180deg, rgba(4, 7, 10, 0.04) 0%, rgba(4, 7, 10, 0.75) 65%, rgba(4, 7, 10, 0.97) 100%);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DETAY PANELİ — YENİ DÜZEN
+══════════════════════════════════════════════════════════════════ */
+
+/* Hero görsel — tam genişlik, sinematik */
+.detail-hero-image {
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  margin-bottom: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #060e0b;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+.detail-hero-image.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.detail-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.06) contrast(1.04);
+  transition: transform 8s ease;
+}
+.detail-card.highlighted .detail-hero-image img {
+  transform: scale(1.03);
+}
+
+/* Boş görsel placeholder */
+.detail-hero-image--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(29, 148, 76, 0.14), transparent 60%),
+    linear-gradient(160deg, #0c1e17 0%, #060d0a 100%);
+  border: 1px solid rgba(29, 148, 76, 0.18);
+  aspect-ratio: 21 / 8;
+}
+.detail-hero-image--empty::after {
+  content: "✦";
+  font-size: 32px;
+  color: var(--green-light);
+  opacity: 0.4;
+}
+
+/* Meta satırı */
+.detail-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.detail-id {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(29, 148, 76, 0.16);
+  border: 1px solid rgba(29, 148, 76, 0.30);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--green-light);
+}
+
+/* Detail tier badge */
+.detail-tier-badge {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+.detail-tier-badge.tier--signature {
+  background: rgba(201, 168, 76, 0.20);
+  border: 1px solid rgba(201, 168, 76, 0.40);
+  color: #e8c978;
+}
+.detail-tier-badge.tier--premium {
+  background: rgba(180, 220, 255, 0.12);
+  border: 1px solid rgba(180, 220, 255, 0.28);
+  color: #a8d8f8;
+}
+.detail-tier-badge.tier--deneyim {
+  background: rgba(29, 148, 76, 0.16);
+  border: 1px solid rgba(29, 148, 76, 0.30);
+  color: var(--green-light);
+}
+
+/* Video wrap */
+.detail-video-wrap {
+  margin-bottom: 32px;
+}
+
+/* 3-blok grid */
+.detail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-hero-image {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+@media (max-width: 600px) {
+  .activity-card, .card-body { min-height: 400px; }
+  .detail-hero-image { aspect-ratio: 4 / 3; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GRAND OPENING — AURORA GLOW AMBİYANS
+══════════════════════════════════════════════════════════════════ */
+
+/* Sayfa üstü aurora hareketi */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 35% at 15% -8%, rgba(29, 148, 76, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 28% at 85% -5%, rgba(100, 160, 255, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 22% at 50% 110%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+
+@keyframes auroraDrift {
+  0%   { opacity: 0.6; transform: translateX(-12px) translateY(0px); }
+  33%  { opacity: 1;   transform: translateX(8px)  translateY(-6px); }
+  66%  { opacity: 0.8; transform: translateX(-4px) translateY(4px); }
+  100% { opacity: 0.7; transform: translateX(14px) translateY(-2px); }
+}
+
+/* Senaryo filtre animasyonu — kart hide/show */
+.activity-card {
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease), border-color 260ms ease, box-shadow 260ms ease, max-height 400ms ease, min-height 400ms ease;
+}
+.activity-card.scenario-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
